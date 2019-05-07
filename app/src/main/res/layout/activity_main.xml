@@ -12,11 +12,34 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <EditText
+        <Button
+            android:id="@+id/btn_dismiss_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:textSize="18sp" />
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="12dp"
+            android:text="重新打开MainActivity并隐藏底部bar"
+            android:textAllCaps="false" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/et"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="测试用的EditText"
+                android:padding="12dp"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btn_dismiss_keyboard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="隐藏键盘" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/tv_result"
@@ -24,7 +47,8 @@
             android:layout_height="wrap_content"
             android:hint="键盘相关数据"
             android:lineHeight="24dp"
-            android:textSize="18sp"/>
+            android:padding="12dp"
+            android:textSize="18sp" />
 
     </LinearLayout>
 </ScrollView>
