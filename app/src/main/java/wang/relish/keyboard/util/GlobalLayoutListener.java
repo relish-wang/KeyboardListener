@@ -4,9 +4,6 @@ import android.graphics.Rect;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * 此文件代码来自com.facebook.react.ReactRootView#CustomGlobalLayoutListener
  *
@@ -19,9 +16,16 @@ public class GlobalLayoutListener implements ViewTreeObserver.OnGlobalLayoutList
 
     private int mKeyboardHeight = 0;
 
+    /**
+     * Activity的根布局(Activity#setContentView方法传入的View) 或 DecorView
+     */
     private View mView;
     private OnKeyboardChangedListener mListener;
 
+    /**
+     * @param v Activity的根布局(Activity#setContentView方法传入的View) 或 DecorView
+     * @param l OnKeyboardChangedListener
+     */
     public GlobalLayoutListener(View v, OnKeyboardChangedListener l) {
         mView = v;
         DisplayMetricsHolder.initDisplayMetricsIfNotInitialized(mView.getContext().getApplicationContext());
@@ -46,18 +50,25 @@ public class GlobalLayoutListener implements ViewTreeObserver.OnGlobalLayoutList
         if (mKeyboardHeight != heightDiff && heightDiff > mMinKeyboardHeightDetected) {
             // keyboard is now showing, or the keyboard height has changed
             mKeyboardHeight = heightDiff;
-            Map<String, Map<String, Object>> params = new HashMap<>();
-            Map<String, Object> coordinates = new HashMap<>();
-            coordinates.put("screenY", PixelUtil.toDIPFromPixel(mVisibleViewArea.bottom));
-            coordinates.put("screenX", PixelUtil.toDIPFromPixel(mVisibleViewArea.left));
-            coordinates.put("width", PixelUtil.toDIPFromPixel(mVisibleViewArea.width()));
-            coordinates.put("height", PixelUtil.toDIPFromPixel(mKeyboardHeight));
-            params.put("endCoordinates", coordinates);
-            if (mListener != null) mListener.onChange(true, params);
+            if (mListener != null) {
+                mListener.onChange(
+                        true,
+                        mKeyboardHeight,
+                        mVisibleViewArea.width(),
+                        mVisibleViewArea.bottom
+                );
+            }
         } else if (mKeyboardHeight != 0 && heightDiff <= mMinKeyboardHeightDetected) {
             // keyboard is now hidden
             mKeyboardHeight = 0;
-            if (mListener != null) mListener.onChange(false, null);
+            if (mListener != null) {
+                mListener.onChange(
+                        false,
+                        mKeyboardHeight,
+                        mVisibleViewArea.width(),
+                        mVisibleViewArea.bottom
+                );
+            }
         }
     }
 }

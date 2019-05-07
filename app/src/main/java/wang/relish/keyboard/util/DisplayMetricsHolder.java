@@ -25,7 +25,7 @@ import java.lang.reflect.Method;
  * classes that need it.
  * Note: windowDisplayMetrics are deprecated in favor of ScreenDisplayMetrics: window metrics
  * are supposed to return the drawable area but there's no guarantee that they correspond to the
- * actual size of the {@link GlobalLayoutListener}. Moreover, they are not consistent with what iOS
+ * actual size of the {@link android.app.Activity}'s RootView. Moreover, they are not consistent with what iOS
  * returns. Screen metrics returns the metrics of the entire screen, is consistent with iOS and
  * should be used instead.
  */

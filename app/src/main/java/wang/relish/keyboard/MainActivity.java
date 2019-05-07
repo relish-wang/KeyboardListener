@@ -6,11 +6,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import java.util.Map;
-
 import wang.relish.keyboard.util.GlobalLayoutListener;
 import wang.relish.keyboard.util.OnKeyboardChangedListener;
-import wang.relish.keyboard.util.PixelUtil;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,46 +24,22 @@ public class MainActivity extends AppCompatActivity {
         mTvResult = findViewById(R.id.tv_result);
 
         final View rootView = findViewById(R.id.ll_root);
-        rootView.post(new Runnable() {
-            @Override
-            public void run() {
-                rootView.getViewTreeObserver().addOnGlobalLayoutListener(
-                        new GlobalLayoutListener(rootView, new OnKeyboardChangedListener() {
-                            @Override
-                            public void onChange(boolean isShow, Map<String, Map<String, Object>> map) {
-                                Log.d(TAG, "isShow: " + isShow);
-                                if (isShow) {
-                                    for (String key : map.keySet()) {
-                                        Log.d(TAG, key + ": " + map.get(key));
-                                    }
-                                }
-                            }
-                        }));
-            }
-        });
-    }
+        rootView.getViewTreeObserver().addOnGlobalLayoutListener(
+                new GlobalLayoutListener(rootView, new OnKeyboardChangedListener() {
+                    @Override
+                    public void onChange(boolean isShow, int keyboardHeight, int screenWidth, int screenHeight) {
+                        StringBuilder sb = new StringBuilder();
+                        sb.append("isShow: ").append(isShow).append("\n")
+                                .append("keyboardHeight: ").append(keyboardHeight).append("\n")
+                                .append("screenWidth: ").append(screenWidth).append("\n")
+                                .append("screenHeight: ").append(screenHeight).append("\n");
+                        mTvResult.append(sb.toString() + "\n");
 
-
-    float mKeyBoardHeight;
-    float mScreenHeight;
-
-    private void updateKeyboardHeight(boolean isShow, Map<String, Map<String, Object>> map) {
-        if (isShow) {
-            if (map != null) {
-                Map<String, Object> endCoordinates = map.get("endCoordinates");
-                if (endCoordinates != null) {
-                    Object height = endCoordinates.get("height");
-                    if (height != null && height instanceof Number) {
-                        mKeyBoardHeight = PixelUtil.toPixelFromDIP(((Number) height).floatValue());
+                        Log.d(TAG, "键盘是否展开: " + isShow);
+                        Log.d(TAG, "键盘高度(px): " + keyboardHeight);
+                        Log.d(TAG, "屏幕宽度(px): " + screenWidth);
+                        Log.d(TAG, "屏幕高度(px): " + screenHeight);
                     }
-                    Object screenY = endCoordinates.get("screenY");
-                    if (height != null && height instanceof Number) {
-                        mScreenHeight = PixelUtil.toPixelFromDIP(((Number) screenY).floatValue());
-                    }
-                }
-            }
-        } else {
-            mKeyBoardHeight = 0;
-        }
+                }));
     }
 }
