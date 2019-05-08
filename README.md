@@ -1,6 +1,4 @@
-# <img src="./app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" alt="KeyboardListener" width="48" height="48" align="bottom" />KeyboardListener
-
-又 **<<AutoCompleteTextView最佳实践-键盘事件篇>>**
+# <img src="./app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" alt="KeyboardListener" width="48" height="48" align="bottom" />AutoCompleteTextView最佳实践-键盘事件篇
 
 **关于作者**
 
