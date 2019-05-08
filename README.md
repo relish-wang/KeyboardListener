@@ -1,5 +1,7 @@
 # <img src="./app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" alt="KeyboardListener" width="48" height="48" align="bottom" />KeyboardListener
 
+又 **<<AutoCompleteTextView最佳实践-键盘事件篇>>**
+
 **关于作者**
 
 > 景三，程序员，主要从事Android平台基础架构方面的工作，欢迎交流技术方面的问题，可以去我的[Github](https://github.com/relish-wang)提issue或者发邮件至relish.wang@gmail.com与我交流。
