@@ -1,14 +1,15 @@
 # <img src="./art/title.png" alt="KeyboardListener" height="48" align="bottom" />
 
+![banner][banner]
+
+从[facebook/react-native](https://github.com/facebook/react-native)源码中抽离出来的用于**监听Android软键盘弹出与收回事件**的相关代码。
+
 **关于作者**
 
 > 景三，程序员，主要从事Android平台基础架构方面的工作，欢迎交流技术方面的问题，可以去我的[Github](https://github.com/relish-wang)提issue或者发邮件至relish.wang@gmail.com与我交流。
 
 [TOC]
 
-## 零、项目简介
-
-从[facebook/react-native](https://github.com/facebook/react-native)源码中抽离出来的用于**监听Android软键盘弹出与收回事件**的相关代码。
 
 **扫描二维码下载Demo**
 
@@ -71,3 +72,6 @@ rootView.getViewTreeObserver().addOnGlobalLayoutListener(
 - [PixelUtil.java](https://github.com/facebook/react-native/blob/4936d284df36071047ce776d9e2486c0371f7b97/ReactAndroid/src/main/java/com/facebook/react/uimanager/PixelUtil.java)(非必要)
 
   度量单位转换工具。px<->sp/dp之间的转化。
+
+
+[banner]: ./art/banner.png
