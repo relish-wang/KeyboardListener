@@ -46,6 +46,9 @@ public class MainActivity extends AppCompatActivity implements OnKeyboardChanged
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        SecondActivity.start(this);
+        finish();
+
         boolean isShow = getIntent().getBooleanExtra(KEY_SHOW_NAVIGATION_BAR, true);
         if (!isShow) {
             hideBottomUIMenu();
